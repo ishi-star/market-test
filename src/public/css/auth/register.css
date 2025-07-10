@@ -1,0 +1,74 @@
+
+
+.register-form {
+  max-width: 500px;
+  margin: 80px auto;
+  background-color: #fff;
+  padding: 40px 30px;
+  border-radius: 8px;
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+}
+
+.register-form__heading {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.register-form__group {
+  margin-bottom: 20px;
+}
+
+.register-form__label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.register-form__input {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.register-form__error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.register-form__btn {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  background-color: #ff6b6b;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s;
+}
+
+.register-form__btn:hover {
+  background-color: #ff4b4b;
+}
+
+/* ログインリンク */
+.login__link {
+  color: #007bff;
+  text-decoration: none;
+  font-size: 14px;
+  margin-top: 10px;
+  display: block;
+  text-align: center;
+}
+
+.login__link:hover {
+  text-decoration: underline;
+}
+
