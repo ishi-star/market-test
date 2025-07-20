@@ -1,0 +1,25 @@
+.product-detail {
+  max-width: 1000px;
+  margin: auto;
+  display: flex;
+  gap: 40px;
+  padding: 20px;
+}
+
+.product-detail__image img {
+  width: 400px;
+  height: auto;
+  background: #eee;
+}
+
+.product-detail__info {
+  flex: 1;
+}
+
+.btn--red {
+  background-color: #ff5a5f;
+  color: #fff;
+  padding: 10px 20px;
+  text-align: center;
+  display: inline-block;
+}

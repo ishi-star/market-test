@@ -34,7 +34,7 @@
       </div>
       <div class="register-form__group">
         <label class="register-form__label" for="password">パスワード</label>
-        <input class="register-form__input" type="password" name="password" id="password" placeholder="例：coachtech1106">
+        <input class="register-form__input" type="password" name="password" id="password" placeholder="例：coach1106">
         <p class="register-form__error-message">
           @error('password')
           {{ $message }}
@@ -43,9 +43,9 @@
       </div>
       <div class="register-form__group">
         <label class="register-form__label" for="password">確認パスワード</label>
-        <input class="register-form__input" type="password" name="password" id="password" placeholder="例：coachtech1106">
+        <input class="register-form__input" type="password" name="password_confirmation" id="password_confirmation" placeholder="例：coach1106">
         <p class="register-form__error-message">
-          @error('password')
+          @error('password_confirmation')
           {{ $message }}
           @enderror
         </p>

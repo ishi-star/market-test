@@ -12,7 +12,7 @@
 <body>
   <div class="app">
     <header class="header">
-     <img src="{{ asset('storage/images/logo.svg') }}" alt="coachtech" width="240" height="80">
+    <img src="{{ asset('storage/images/logo.svg') }}" alt="coachtech" width="240" height="80">
       @yield('link')
     </header>
     <div class="content">
