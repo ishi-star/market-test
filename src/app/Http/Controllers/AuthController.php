@@ -33,7 +33,7 @@ class AuthController extends Controller
 
     if (Auth::attempt($credentials)) {
         $request->session()->regenerate(); // セッション再生成（セキュリティ対策）
-        return redirect()->intended('/'); // ログイン後にリダイレクト
+        return redirect('/?tab=mylist'); // ログイン後にリダイレクト
     }
 
     return back()->withErrors([

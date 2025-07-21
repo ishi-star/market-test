@@ -1,0 +1,92 @@
+.purchase {
+  padding: 20px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.purchase__container {
+  display: flex;
+  gap: 30px;
+}
+
+.purchase__left {
+  width: 70%;
+}
+
+.purchase__right {
+  width: 30%;
+  background: #f9f9f9;
+  padding: 15px;
+  border: 1px solid #ccc;
+}
+
+.purchase__product-box {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  padding: 15px;
+}
+
+.purchase__product-image img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+}
+
+.purchase__product-name {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.purchase__product-price {
+  font-size: 16px;
+  color: #333;
+  margin-top: 10px;
+}
+
+.purchase__form-group {
+  margin-bottom: 15px;
+}
+
+.purchase__label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.purchase__select {
+  width: 100%;
+  padding: 8px;
+}
+
+.purchase__address {
+  background: #fff;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.purchase__submit-btn {
+  margin-top: 20px;
+  width: 100%;
+  padding: 10px;
+  background: #f55;
+  color: #fff;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.purchase__submit-btn:hover {
+  background: #d33;
+}
+
+.purchase__error-message {
+  color: red;
+  font-size: 0.9em;
+}
+
+.purchase__summary-title {
+  font-weight: bold;
+  margin-bottom: 10px;
+}

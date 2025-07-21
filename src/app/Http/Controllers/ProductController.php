@@ -7,6 +7,8 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\Condition;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\ProductRequest;
+
 
 class ProductController extends Controller
 {
@@ -23,8 +25,8 @@ class ProductController extends Controller
     {
     $product = Product::with(['comments.user', 'categories'])
     // リレーション
-                ->withCount(['likes', 'comments']) // いいね数・コメント数
-                ->findOrFail($id);
+        ->withCount(['likes', 'comments']) // いいね数・コメント数
+        ->findOrFail($id);
 
     return view('products.show', compact('product'));
     }

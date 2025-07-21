@@ -5,7 +5,12 @@
 @endsection
 
 @section('link')
-<a class="header__link" href="/logout">ログアウト</a>
+<form id="logout-form" action="/logout" method="POST" >
+  @csrf
+  <button type="submit" class="header__link" >
+    ログアウト
+  </button>
+</form>
 <a class="header__link" href="/mypage">マイページ</a>
 <a class="header__link" href="/sell">出品</a>
 @endsection
