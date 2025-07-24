@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\ProfileController;
 
 
 /*
@@ -35,4 +36,5 @@ Route::middleware('auth')->group(function () {
   Route::get('/purchase/{id}', [PurchaseController::class, 'show'])->name('purchase.show');
   Route::post('/purchase/{id}', [PurchaseController::class, 'submit'])->name('purchase.submit');
   Route::get('/user/address/edit', [UserController::class, 'editAddress'])->name('user.address.edit');
+  Route::get('/mypage', [ProfileController::class, 'index'])->name('profile.index');
 });

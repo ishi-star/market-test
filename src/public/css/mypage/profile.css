@@ -1,0 +1,92 @@
+.mypage {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 0 20px;
+  font-family: sans-serif;
+}
+
+.mypage__title {
+  color: #888;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.mypage__profile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.mypage__avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #ddd;
+}
+
+.mypage__username {
+  font-size: 24px;
+  font-weight: bold;
+  margin-left: 20px;
+  flex-grow: 1;
+}
+
+.mypage__edit-btn {
+  padding: 8px 16px;
+  border: 1px solid #f66;
+  color: #f66;
+  border-radius: 6px;
+  font-size: 14px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.mypage__edit-btn:hover {
+  background-color: #f66;
+  color: #fff;
+}
+
+.mypage__tabs {
+  display: flex;
+  margin: 30px 0 20px;
+  border-bottom: 2px solid #eee;
+}
+
+.mypage__tab {
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  border-bottom: 3px solid transparent;
+  transition: border-color 0.3s, color 0.3s;
+}
+
+.mypage__tab.active {
+  border-color: red;
+  color: red;
+}
+
+.mypage__products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+}
+
+.mypage__product-card {
+  text-align: center;
+}
+
+.mypage__product-image {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 8px;
+  background-color: #eee;
+}
+
+.mypage__product-name {
+  margin-top: 10px;
+  font-size: 14px;
+}

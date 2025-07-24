@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/purchase.css') }}">
+<link rel="stylesheet" href="{{ asset('css/mypage/purchase.css') }}">
 @endsection
 
 @section('content')
@@ -44,8 +44,7 @@
           </p>
         </div>
 
-        <input type="submit" class="purchase__submit-btn btn" value="購入する">
-      </form>
+
     </div>
 
     {{-- 右側：明細 --}}
@@ -55,6 +54,8 @@
         <p class="purchase__summary-item">商品代金：¥{{ number_format($product->price) }}</p>
         <p class="purchase__summary-item">支払い方法：{{ old('payment_method') ?? '未選択' }}</p>
       </div>
+              <input type="submit" class="purchase__submit-btn btn" value="購入する">
+      </form>
     </div>
   </div>
 </div>

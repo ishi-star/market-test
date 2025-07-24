@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 class ProfileController extends Controller
 {
     //
+
+        public function index()
+    {
+        $user = Auth::user();
+        return view('mypage.profile'); // resources/views/profile/index.blade.php
+    }
+
     public function create()
 {
     return view('profile.create'); // 作成したBladeファイル名に合わせて変更

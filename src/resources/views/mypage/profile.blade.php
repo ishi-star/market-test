@@ -1,64 +1,31 @@
-
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/auth/login.css')}}">
-@endsection
-
-@section('link')
-
+<link rel="stylesheet" href="{{ asset('css/mypage/profile.css') }}">
 @endsection
 
 @section('content')
+<div class="mypage">
+  <h2 class="mypage__title">プロフィール画面</h2>
 
-<div class="profile-form">
-  <h2 class="profile-form__heading content__heading">プロフィール登録</h2>
-  <div class="profile-form__inner">
-    <form class="profile-form__form" action="/profile" method="post" enctype="multipart/form-data">
-      @csrf
+  <div class="mypage__profile">
+    <div class="mypage__avatar"></div>
+    <div class="mypage__username">{{ $user->name }}</div>
+    <a href="{{ route('user.profile.edit') }}" class="mypage__edit-btn">プロフィールを編集</a>
+  </div>
 
-      <div class="profile-form__group">
-        <label class="profile-form__label" for="avatar">プロフィール画像</label>
-        <input class="profile-form__input" type="file" name="avatar" id="avatar">
-        @error('avatar')
-        <p class="profile-form__error-message">{{ $message }}</p>
-        @enderror
-      </div>
+  <div class="mypage__tabs">
+    <a href="{{ route('user.products.selling') }}" class="mypage__tab @if($tab === 'selling') active @endif">出品した商品</a>
+    <a href="{{ route('user.products.purchased') }}" class="mypage__tab @if($tab === 'purchased') active @endif">購入した商品</a>
+  </div>
 
-      <div class="profile-form__group">
-        <label class="profile-form__label" for="username">ユーザー名</label>
-        <input class="profile-form__input" type="text" name="username" id="username" placeholder="例：mio_tech">
-        @error('username')
-        <p class="profile-form__error-message">{{ $message }}</p>
-        @enderror
-      </div>
-
-      <div class="profile-form__group">
-        <label class="profile-form__label" for="postcode">郵便番号</label>
-        <input class="profile-form__input" type="text" name="postcode" id="postcode" placeholder="例：460-0008">
-        @error('postcode')
-        <p class="profile-form__error-message">{{ $message }}</p>
-        @enderror
-      </div>
-
-      <div class="profile-form__group">
-        <label class="profile-form__label" for="address">住所</label>
-        <input class="profile-form__input" type="text" name="address" id="address" placeholder="例：名古屋市中区栄1丁目">
-        @error('address')
-        <p class="profile-form__error-message">{{ $message }}</p>
-        @enderror
-      </div>
-
-      <div class="profile-form__group">
-        <label class="profile-form__label" for="building">建物名</label>
-        <input class="profile-form__input" type="text" name="building" id="building" placeholder="例：COACHTECHビル3F">
-        @error('building')
-        <p class="profile-form__error-message">{{ $message }}</p>
-        @enderror
-      </div>
-
-      <input class="profile-form__btn btn" type="submit" value="更新する">
-    </form>
+  <div class="mypage__products">
+    @foreach ($products as $product)
+    <div class="mypage__product-card">
+      <img src="{{ asset('storage/' . $product->image_path) }}" alt="商品画像" class="mypage__product-image">
+      <p class="mypage__product-name">{{ $product->name }}</p>
+    </div>
+    @endforeach
   </div>
 </div>
 @endsection
