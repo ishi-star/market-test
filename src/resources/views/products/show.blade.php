@@ -4,23 +4,13 @@
 <link rel="stylesheet" href="{{ asset('css/products/show.css') }}">
 @endsection
 
-@section('link')
-<form id="logout-form" action="/logout" method="POST" >
-  @csrf
-  <button type="submit" class="header__link" >
-    ログアウト
-  </button>
-</form>
-<a class="header__link" href="/mypage">マイページ</a>
-<a class="header__link" href="/sell">出品</a>
-@endsection
 
 @section('content')
 <div class="product-detail">
   <div class="product-detail__container">
     <!-- 商品画像 -->
     <div class="product-detail__image">
-      <img src="{{ asset('storage/' . $product->image_path) }}" alt="商品画像">
+      <img src="{{ asset('storage/' . $product->img_url) }}" alt="商品画像">
     </div>
 
     <!-- 商品情報 -->
@@ -30,14 +20,30 @@
       <p class="product-detail__price">¥{{ number_format($product->price) }} <span>（税込）</span></p>
 
       <div class="product-detail__actions">
-        <p>⭐ {{ $product->likes_count }}　💬 {{ $product->comments_count }}</p>
+            @auth
+        @if ($userLiked)
+            <form action="{{ route('products.unlike', $product->id) }}" method="POST" style="display:inline;">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn--gray">⭐ {{ $product->likes_count }} </button>
+            </form>
+        @else
+            <form action="{{ route('products.like', $product->id) }}" method="POST" style="display:inline;">
+                @csrf
+                <button type="submit" class="btn btn--yellow">⭐ {{ $product->likes_count }} </button>
+            </form>
+        @endif
+    @else
+        ⭐ {{ $product->likes_count }}
+    @endauth
+    
+        💬 {{ $product->comments_count }}
         <a href="/purchase/{{ $product->id }}" class="btn btn--red">購入手続きへ</a>
       </div>
 
       <!-- 商品説明 -->
       <div class="product-detail__section">
         <h3>商品説明</h3>
-        <p>カラー：{{ $product->color }}</p>
         <p>{{ $product->description }}</p>
       </div>
 
@@ -46,10 +52,10 @@
         <h3>商品の情報</h3>
         <p>カテゴリ：
           @foreach ($product->categories as $category)
-            <span class="product-detail__tag">{{ $category->name }}</span>
+            <span class="product-detail__tag">{{ $category->category }}</span>
           @endforeach
         </p>
-        <p>商品の状態：{{ $product->condition }}</p>
+        <p>商品の状態：{{ $product->condition->condition }}</p>
       </div>
 
       <!-- コメント一覧 -->

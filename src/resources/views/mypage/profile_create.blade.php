@@ -2,7 +2,7 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/auth/login.css')}}">
+<link rel="stylesheet" href="{{ asset('css/mypage/profile_create.css')}}">
 @endsection
 
 @section('link')
@@ -14,12 +14,13 @@
 <div class="profile-form">
   <h2 class="profile-form__heading content__heading">プロフィール登録</h2>
   <div class="profile-form__inner">
-    <form class="profile-form__form" action="/profile" method="post" enctype="multipart/form-data">
+    <form class="profile-form__form" action="{{ route('profile.store') }}" method="post" enctype="multipart/form-data">
+
       @csrf
 
       <div class="profile-form__group">
-        <label class="profile-form__label" for="avatar">プロフィール画像</label>
-        <input class="profile-form__input" type="file" name="avatar" id="avatar">
+        <label class="profile-form__label">プロフィール画像</label>
+        <input class="profile-form__input" type="file" name="avatar">
         @error('avatar')
         <p class="profile-form__error-message">{{ $message }}</p>
         @enderror
@@ -27,23 +28,23 @@
 
       <div class="profile-form__group">
         <label class="profile-form__label" for="username">ユーザー名</label>
-        <input class="profile-form__input" type="text" name="username" id="username" placeholder="例：mio_tech">
+        <input class="profile-form__input" type="text" name="name" id="name" placeholder="例：山田太郎">
         @error('username')
         <p class="profile-form__error-message">{{ $message }}</p>
         @enderror
       </div>
 
       <div class="profile-form__group">
-        <label class="profile-form__label" for="postcode">郵便番号</label>
-        <input class="profile-form__input" type="text" name="postcode" id="postcode" placeholder="例：460-0008">
-        @error('postcode')
+        <label class="profile-form__label">郵便番号</label>
+        <input class="profile-form__input" type="text" name="zip" placeholder="例：123-4567">
+        @error('zip')
         <p class="profile-form__error-message">{{ $message }}</p>
         @enderror
       </div>
 
       <div class="profile-form__group">
         <label class="profile-form__label" for="address">住所</label>
-        <input class="profile-form__input" type="text" name="address" id="address" placeholder="例：名古屋市中区栄1丁目">
+        <input class="profile-form__input" type="text" name="address" id="address" placeholder="例：名古屋市中区">
         @error('address')
         <p class="profile-form__error-message">{{ $message }}</p>
         @enderror

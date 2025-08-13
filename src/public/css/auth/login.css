@@ -52,9 +52,10 @@
   transition: background-color 0.3s;
 }
 
+/* カーソル当てると色が変わる */
 .login-form__btn:hover {
   background-color: #ff4b4b;
-}0
+}
 
 /* ログインリンク */
 .register__link {

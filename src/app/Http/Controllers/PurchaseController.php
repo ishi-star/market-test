@@ -13,7 +13,12 @@ class PurchaseController extends Controller
     {
         $product = Product::with('categories', 'condition')->findOrFail($id);
         $user = Auth::user();
-        return view('products.purchase', compact('product', 'user'));
+        $profile = $user->profile; // profilesテーブルから住所情報を取得
+
+            // セッションから支払い方法を取得
+        $selectedPaymentMethod = session('selected_payment_method', null);
+
+        return view('products.purchase', compact('product', 'user', 'profile', 'selectedPaymentMethod'));
     }
 
     // 購入処理
@@ -25,6 +30,77 @@ class PurchaseController extends Controller
 
         // 本来は購入レコード作成などを行う
 
-        return redirect()->route('mypage')->with('success', '購入が完了しました！');
+        // 支払い方法をセッションに保存して購入画面に戻す
+        return redirect()
+            ->route('purchase.show', ['id' => $id])
+            ->with('selected_payment_method', $request->payment_method);
+
     }
+
+        // 住所編集画面表示
+    public function edit($item_id)
+        {
+            $product = Product::findOrFail($item_id);
+            $profile = Auth::user()->profile; // profilesテーブルから住所取得
+            return view('mypage.address', compact('product', 'profile'));
+        }
+
+    // 住所情報の保存・更新
+    public function update(Request $request, $item_id)
+    {
+        $validated = $request->validate([
+            'zip'         => 'required|string|max:10',
+            'address'     => 'required|string|max:255',
+            'building'    => 'nullable|string|max:255',
+        ]);
+
+        // ユーザーのプロフィール更新
+        Auth::user()->profile()->updateOrCreate(
+            ['user_id' => Auth::id()], // 更新条件：ユーザーID
+            $validated                 // 更新データ
+        );
+
+        return redirect()->route('purchase.show', ['id' => $item_id])
+                         ->with('success', '住所を更新しました。');
+    }
+
+    public function store(Request $request)
+{
+    $validated = $request->validate([
+        'img_url' => 'required|image',
+        'name' => 'required|string|max:255',
+        'brand_name' => 'nullable|string|max:255',
+        'description' => 'required|string',
+        'price' => 'required|numeric',
+        'condition_id' => 'required|exists:conditions,id',
+        'categories' => 'required|array',
+        'categories.*' => 'exists:categories,id',
+    ]);
+
+    // 画像保存処理
+    $path = $request->file('img_url')->store('images', 'public');
+
+    // 商品登録
+    $product = new Product();
+    $product->img_url = $path;
+    $product->name = $validated['name'];
+    $product->brand_name = $validated['brand_name'] ?? null;
+    $product->description = $validated['description'];
+    $product->price = $validated['price'];
+    $product->condition_id = $validated['condition_id'];
+    $product->user_id = auth()->id(); // ログインユーザーが前提
+    $product->save();
+
+    // カテゴリを中間テーブルに保存
+    $product->categories()->attach($validated['categories']);
+
+    return redirect()->route('products.index')->with('success', '商品を出品しました');
+}
+
+    public function create()
+{
+    $categories = Category::all();
+    $conditions = Condition::all();
+    return view('product_create', compact('categories', 'conditions'));
+}
 }

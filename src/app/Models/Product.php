@@ -34,7 +34,8 @@ class Product extends Model
     // 商品のカテゴリー（多対多）
     public function categories()
     {
-        return $this->belongsToMany(Category::class, 'category_products');
+        return $this->belongsToMany(Category::class, 'category_products', 'product_id', 'category_id');
+
     }
 
     // コメント（1対多）

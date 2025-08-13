@@ -14,12 +14,14 @@
     </div>
 
     {{-- カテゴリー（複数選択） --}}
-    <div>
-      <p>カテゴリ</p>
+    <div class="product-categories">
+      <h4>カテゴリ</h4>
       @foreach ($categories as $category)
         <label>
-          <input type="checkbox" name="categories[]" value="{{ $category->id }}">
+          <input type="checkbox" name="categories[]" value="{{ $category->id }}"
+                @if(in_array($category->id, old('categories', []))) checked @endif>
           {{ $category->category }}
+          {{-- old('categories', ...) はバリデーションエラーで戻ったときの再表示にも対応 --}}
         </label>
       @endforeach
     </div>

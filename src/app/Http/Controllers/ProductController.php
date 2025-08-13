@@ -24,11 +24,15 @@ class ProductController extends Controller
     public function show($id)
     {
     $product = Product::with(['comments.user', 'categories'])
-    // リレーション
-        ->withCount(['likes', 'comments']) // いいね数・コメント数
+        ->withCount(['likes', 'comments'])
         ->findOrFail($id);
 
-    return view('products.show', compact('product'));
+    $userLiked = false;
+    if (Auth::check()) {
+        $userLiked = $product->likes()->where('user_id', Auth::id())->exists();
+    }
+
+    return view('products.show', compact('product', 'userLiked'));
     }
 
     public function create()
@@ -40,36 +44,40 @@ class ProductController extends Controller
     }
 
     public function store(Request $request)
-{
+    {
     $request->validate([
-        'name' => 'required|string|max:255',
-        'brand_name' => 'nullable|string|max:255',
+        'name'        => 'required|string|max:255',
+        'brand_name'  => 'nullable|string|max:255',
         'description' => 'required|string',
-        'price' => 'required|numeric|min:0',
+        'price'       => 'required|numeric|min:0',
         'condition_id' => 'required|exists:conditions,id',
-        'img_url' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'img_url'     => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'categories'  => 'required|array',
+        'categories.*' => 'exists:categories,id',
     ]);
 
     // 画像アップロード
+    $path = null;
     if ($request->hasFile('img_url')) {
         $path = $request->file('img_url')->store('products', 'public');
     }
 
     $product = Product::create([
-        'user_id' => Auth::id(),
-        'name' => $request->name,
+        'user_id'    => Auth::id(),
+        'name'       => $request->name,
         'brand_name' => $request->brand_name,
         'description' => $request->description,
-        'price' => $request->price,
+        'price'      => $request->price,
         'condition_id' => $request->condition_id,
-        'img_url' => $path ?? null,
+        'img_url'    => $path ?? null,
     ]);
 
     // カテゴリ関連づけ（中間テーブル）
-    if ($request->has('category_ids')) {
-        $product->categories()->sync($request->category_ids);
+    if ($request->has('categories')) {
+        $product->categories()->sync($request->categories);
     }
-
-    return redirect()->route('products.create')->with('success', '商品を出品しました。');
-}
+    // 作成後は詳細ページに飛ばす
+    return redirect()->route('products.show', $product->id)
+                    ->with('success', '商品を出品しました。');
+    }
 }

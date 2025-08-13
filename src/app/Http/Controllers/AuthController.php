@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\LoginRequest;
+use App\Http\Requests\RegisterRequest;
 
 class AuthController extends Controller
 {
@@ -14,9 +18,26 @@ class AuthController extends Controller
     }
 
     // 登録処理（必要なら）
-    public function register(Request $request)
+    public function register(RegisterRequest $request)
     {
         // 登録処理を書く（今回は表示のみでOK）
+        $validated = $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|email|unique:users',
+        'password' => 'required|string|min:6|confirmed',
+    ]);
+        $user = User::create([
+        'name' => $validated['name'],
+        'email' => $validated['email'],
+        'password' => Hash::make($validated['password']),
+    ]);
+
+    // 登録後にログイン状態にする
+    Auth::login($user);
+
+    // プロフィール作成画面にリダイレクト
+    return redirect()->route('profile.create');
+
     }
 
     public function showLoginForm()
@@ -24,20 +45,18 @@ class AuthController extends Controller
         return view('auth.login'); // このパスが `resources/views/auth/login.blade.php`
     }
 
-    public function login(Request $request)
+public function login(LoginRequest $request)
 {
-    $credentials = $request->validate([
-        'email' => ['required', 'email'],
-        'password' => ['required'],
-    ]);
+    // validate移動
+    $credentials = $request->only('email', 'password');
 
     if (Auth::attempt($credentials)) {
-        $request->session()->regenerate(); // セッション再生成（セキュリティ対策）
-        return redirect('/?tab=mylist'); // ログイン後にリダイレクト
+        $request->session()->regenerate();
+        return redirect('/?tab=mylist');
     }
 
     return back()->withErrors([
-        'email' => 'メールアドレスまたはパスワードが正しくありません。',
+        'email' => 'ログイン情報が登録されていません。',
     ])->withInput();
 }
 }

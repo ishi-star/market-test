@@ -11,10 +11,29 @@
 
 <body>
   <div class="app">
-    <header class="header">
-    <img src="{{ asset('storage/images/logo.svg') }}" alt="coachtech" width="240" height="80">
-      @yield('link')
-    </header>
+<header class="header">
+  <img src="{{ asset('storage/images/logo.svg') }}" alt="coachtech" width="240" height="80">
+
+  {{-- ログインページと登録ページではリンクを非表示 --}}
+  @unless(in_array(Route::currentRouteName(), ['login', 'register']))
+    @auth
+      <form id="logout-form" action="/logout" method="POST" style="display:inline;">
+        @csrf
+        <button type="submit" class="header__link">ログアウト</button>
+      </form>
+      <a class="header__link" href="/mypage">マイページ</a>
+      <a class="header__link" href="/sell">出品</a>
+    @endauth
+
+    @guest
+      <a class="header__link" href="/login">ログイン</a>
+      <a class="header__link" href="/mypage">マイページ</a>
+      <a class="header__link" href="/sell">出品</a>
+    @endguest
+  @endunless
+
+  @yield('link')
+</header>
     <div class="content">
       @yield('content')
     </div>

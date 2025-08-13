@@ -17,6 +17,7 @@ class CreateProductsTable extends Migration
         $table->id();
         $table->unsignedBigInteger('user_id');       // 出品者のユーザーID
         $table->unsignedBigInteger('condition_id');  // 商品の状態ID
+        $table->foreign('condition_id')->references('id')->on('conditions');
         $table->string('name');                      // 商品名
         $table->integer('price');                    // 価格
         $table->string('brand_name')->nullable();         // ブランド（任意）
