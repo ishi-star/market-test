@@ -20,6 +20,15 @@ class Product extends Model
 
     ];
 
+        public function isSold()
+    {
+        return $this->soldProduct()->exists();
+    }
+
+    public function soldProduct()
+    {
+        return $this->hasOne(SoldProduct::class);
+    }
         public function user()
     {
         return $this->belongsTo(User::class);

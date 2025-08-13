@@ -17,7 +17,7 @@ class CreateSoldProductsTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('product_id')->constrained()->onDelete('cascade');
-            $table->string('sending_postcode');
+            $table->string('sending_zip');
             $table->string('sending_address');
             $table->string('sending_building')->nullable();
             $table->timestamps();

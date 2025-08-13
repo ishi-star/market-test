@@ -6,6 +6,14 @@
 
 @section('content')
 <div class="purchase">
+  {{-- ✅ 完了メッセージ --}}
+  @if (session('success'))
+    <div class="alert-success">
+      {{ session('success') }}
+    </div>
+  @endif
+
+
   <h2 class="purchase__heading content__heading">商品購入</h2>
   <div class="purchase__container">
 

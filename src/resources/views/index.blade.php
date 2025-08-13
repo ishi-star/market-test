@@ -1,4 +1,4 @@
-<!-- ログイン前のトップページ -->
+<!-- トップページ -->
 
 @extends('layouts.app')
 
@@ -19,6 +19,11 @@
     <div class="product-list__item">
       <a href="{{ route('products.show', ['id' => $product->id]) }}">
         <img src="{{ asset('storage/' . $product->img_url) }}" alt="{{ $product->name }}" class="product-list__image">
+        
+              {{-- ✅ SOLD 表示 --}}
+      @if ($product->isSold())
+        <span class="product-list__sold-badge">SOLD</span>
+      @endif
         <p class="product-list__name">{{ $product->name }}</p>
       </a>
     </div>

@@ -33,6 +33,8 @@ Route::get('/item/{id}', [ProductController::class, 'show'])->name('products.sho
 // Route::post('/item/{id}/comment', [CommentController::class, 'store']);
 
 Route::middleware('auth')->group(function () {
+  Route::get('/', [ProductController::class, 'index'])->name('products.index');
+  
   Route::get('/profile/create', [ProfileController::class, 'create'])->name('profile.create');
   Route::post('/profile/store', [ProfileController::class, 'store'])->name('profile.store');
   Route::get('/mypage', [ProfileController::class, 'index'])->name('profile.index');

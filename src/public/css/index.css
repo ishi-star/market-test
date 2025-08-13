@@ -42,3 +42,9 @@
   font-size: 14px;
   color: #333;
 }
+
+
+
+.product-list__sold-badge {
+  color: #e74c3c;
+}

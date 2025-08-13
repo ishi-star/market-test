@@ -12,7 +12,7 @@ class SoldProduct extends Model
     protected $fillable = [
         'user_id',
         'product_id',
-        'sending_postcode',
+        'sending_zip',
         'sending_address',
         'sending_building'
     ];
