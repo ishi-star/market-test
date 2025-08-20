@@ -12,38 +12,44 @@
 <body>
   <div class="app">
     <header class="header">
-    <img src="{{ asset('storage/images/logo.svg') }}" alt="coachtech" width="240" height="80">
+  {{-- 左：ロゴ --}}
+      <div class="header__left">
+        <img src="{{ asset('storage/images/logo.svg') }}" alt="coachtech" width="200" height="50">
+      </div>
 
-    @unless(in_array(Route::currentRouteName(), ['login', 'register']))
-    <div class="search-bar">
-      <form action="{{ route('products.index') }}" method="GET">
+  {{-- 中央：検索 --}}
+  @unless(in_array(Route::currentRouteName(), ['login', 'register']))
+    <div class="header__center">
+      <form action="{{ route('products.index') }}" method="GET" class="search-bar">
         <input type="text" name="keyword" placeholder="なにをお探しですか？" class="search-bar__input">
-        <button type="submit" class="search-bar__button">検索</button>
       </form>
     </div>
-    @endunless
+  @endunless
 
-
-    {{-- ログインページと登録ページではリンクを非表示 --}}
+  {{-- 右：リンク --}}
+  <div class="header__right">
     @unless(in_array(Route::currentRouteName(), ['login', 'register']))
       @auth
-      <form id="logout-form" action="/logout" method="POST" style="display:inline;">
-        @csrf
-        <button type="submit" class="header__link">ログアウト</button>
-      </form>
-      <a class="header__link" href="/mypage">マイページ</a>
-      <a class="header__link" href="/sell">出品</a>
+    <a href="{{ route('logout') }}" class="header__link"
+    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">ログアウト</a>
+
+<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display:none;">
+  @csrf
+</form>
+        <a class="header__link" href="/mypage">マイページ</a>
+        <a class="header__link" href="/sell">出品</a>
       @endauth
 
       @guest
-      <a class="header__link" href="/login">ログイン</a>
-      <a class="header__link" href="/mypage">マイページ</a>
-      <a class="header__link" href="/sell">出品</a>
+        <a class="header__link" href="/login">ログイン</a>
+        <a class="header__link" href="/mypage">マイページ</a>
+        <a class="header__link" href="/sell">出品</a>
       @endguest
     @endunless
-
     @yield('link')
-    </header>
+  </div>
+</header>
+
     <div class="content">
       @yield('content')
     </div>

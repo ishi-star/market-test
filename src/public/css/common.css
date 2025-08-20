@@ -1,35 +1,48 @@
-/* app全体を縦方向のフレックスにしてヘッダーを上に固定 */
-.app {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  /* 画面全体の高さ */
-}
-
-.content {
-  flex: 1;
-  min-height: 100vh;
-  padding-top: 140px;
-}
-
 .header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  background-color: #e5e97c;
-  padding: 10px 20px;
+  background-color: #000;
+  padding: 0px 20px;
+
   display: flex;
   align-items: center;
-  gap: 20px;
+  justify-content: space-between;
+  box-sizing: border-box;
+  /* 左右に分ける */
 }
 
-.header img {
-  height: 40px;
+.header__left {
+  flex: 0 0 auto;
 }
 
-.header__heading {
-  color: #fff;
-  font-size: 20px;
-  margin: 0;
+.header__center {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  /* 中央に配置 */
+}
+
+.header__right {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.search-bar__input {
+  width: 200px;
+  /* max-width: 250px; */
+  padding: 5px;
+  margin-top: 11px;
+}
+
+.header__left,
+.header__right {
+  min-width: 200px;
+}
+
+.content {
+  margin-top: 10px;
 }
