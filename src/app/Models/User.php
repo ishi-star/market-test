@@ -69,6 +69,6 @@ class User extends Authenticatable
     // いいねした商品（多対多）
     public function likes()
     {
-        return $this->belongsToMany(Product::class, 'likes');
+        return $this->belongsToMany(Product::class, 'likes', 'user_id', 'product_id');
     }
 }

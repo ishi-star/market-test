@@ -5,17 +5,27 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Profile;
-
+use App\Models\Product;
+use App\Models\Purchase;
+use App\Models\SoldProduct;
 
 class ProfileController extends Controller
 {
-    //
-
-        public function index()
+        public function mypage(Request $request)
     {
         $user = Auth::user();
-        $products = $user->products ?? collect();// Eloquentリレーションがある前提
-        return view('mypage.profile', compact('user','products'));
+        $tab = $request->query('tab', 'selling'); // デフォルトは selling
+
+        // 出品した商品
+        $sellingProducts = Product::where('user_id', $user->id)->get();
+
+        // 購入した商品（Purchase モデルに user_id, product_id がある前提）
+        $purchasedProducts = SoldProduct::with('product')
+            ->where('user_id', $user->id)
+            ->get();
+
+        // $products = $user->products ?? collect(); Eloquentリレーションがある前提
+        return view('mypage.profile', compact('user', 'tab', 'sellingProducts', 'purchasedProducts'));
          // resources/views/profile/index.blade.php
     }
 
@@ -50,7 +60,7 @@ class ProfileController extends Controller
     }
 
     // リダイレクト先を存在するルート名に変更
-    return redirect()->route('profile.index')->with('success', 'プロフィールを登録しました');
+    return redirect()->route('mypage')->with('success', 'プロフィールを登録しました');
 }
         public function edit()
     {

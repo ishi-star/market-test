@@ -13,13 +13,31 @@ use App\Http\Requests\ProductRequest;
 class ProductController extends Controller
 {
     // 商品一覧ページ
-    public function index()
-    {
-    // 商品全取得
-    $products = Product::all();
+public function index(Request $request)
+{
+    $tab = $request->query('tab');
+    $keyword = $request->query('keyword');
 
-    return view('index', compact('products'));
+    if ($tab === 'mylist' && Auth::check()) {
+        $products = Auth::user()->likes();
+
+        if (!empty($keyword)) {
+            $products = $products->where('name', 'like', "%{$keyword}%");
+        }
+
+        $products = $products->get();
+    } else {
+        $products = Product::where('user_id', '!=', Auth::id());
+
+        if (!empty($keyword)) {
+            $products = $products->where('name', 'like', "%{$keyword}%");
+        }
+
+        $products = $products->get();
     }
+
+    return view('index', compact('products', 'keyword'));
+}
 
     public function show($id)
     {

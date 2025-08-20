@@ -19,25 +19,25 @@ use App\Http\Controllers\LikeController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', [ProductController::class, 'index']);
+Route::get('/', [ProductController::class, 'index'])->name('products.index');
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
 Route::post('/register', [AuthController::class, 'register'])->name('register.submit');
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
+
 Route::get('/profile', [ProfileController::class, 'create'])->name('profile.create');
 Route::post('/profile', [ProfileController::class, 'store'])->name('profile.store');
-
-
 
 Route::get('/item/{id}', [ProductController::class, 'show'])->name('products.show');
 // Route::post('/item/{id}/comment', [CommentController::class, 'store']);
 
 Route::middleware('auth')->group(function () {
-  Route::get('/', [ProductController::class, 'index'])->name('products.index');
+  Route::get('/?tab=mylist', [ProductController::class, 'index'])->name('products.index');
   
   Route::get('/profile/create', [ProfileController::class, 'create'])->name('profile.create');
   Route::post('/profile/store', [ProfileController::class, 'store'])->name('profile.store');
-  Route::get('/mypage', [ProfileController::class, 'index'])->name('profile.index');
+// マイページ
+  Route::get('/mypage', [ProfileController::class, 'mypage'])->name('mypage');
 
   Route::get('/sell', [ProductController::class, 'create'])->name('products.create');
   Route::post('/sell', [ProductController::class, 'store'])->name('products.store');
