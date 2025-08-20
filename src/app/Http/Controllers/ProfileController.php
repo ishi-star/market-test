@@ -31,7 +31,7 @@ class ProfileController extends Controller
 
     public function create()
 {
-    return view('mypage.profile_create'); // 作成したBladeファイル名に合わせて変更
+    return view('mypage.profile_create'); // 作成したBladeファイル名に合わせる
 }
 
     public function store(Request $request)

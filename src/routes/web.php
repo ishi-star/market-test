@@ -6,19 +6,16 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LikeController;
-
+use App\Http\Controllers\CommentController;
 
 
 /*
-|--------------------------------------------------------------------------
+|--------------------------------------------------
 | Web Routes
-|--------------------------------------------------------------------------
-
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
+|--------------------------------------------------
+| 商品一覧や購入など、ユーザーがブラウザでアクセスするルートを定義します。コントローラーとの紐付けや、ビューの表示処理をここに記述します。
 */
+
 Route::get('/', [ProductController::class, 'index'])->name('products.index');
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
 Route::post('/register', [AuthController::class, 'register'])->name('register.submit');
@@ -29,11 +26,10 @@ Route::get('/profile', [ProfileController::class, 'create'])->name('profile.crea
 Route::post('/profile', [ProfileController::class, 'store'])->name('profile.store');
 
 Route::get('/item/{id}', [ProductController::class, 'show'])->name('products.show');
-// Route::post('/item/{id}/comment', [CommentController::class, 'store']);
 
 Route::middleware('auth')->group(function () {
   Route::get('/?tab=mylist', [ProductController::class, 'index'])->name('products.index');
-  
+
   Route::get('/profile/create', [ProfileController::class, 'create'])->name('profile.create');
   Route::post('/profile/store', [ProfileController::class, 'store'])->name('profile.store');
 // マイページ
@@ -47,8 +43,6 @@ Route::middleware('auth')->group(function () {
   Route::get('/purchase/address/{item_id}', [PurchaseController::class, 'edit'])->name('address.edit');
   Route::post('/purchase/address/{item_id}', [PurchaseController::class, 'update'])->name('address.update');
 
-  // Route::get('/user/address/edit', [UserController::class, 'editAddress'])->name('user.address.edit');
-
   Route::get('/mypage/profile/edit', [ProfileController::class, 'edit'])->name('user.profile.edit');
   Route::post('/mypage/profile/update', [ProfileController::class, 'update'])->name('user.profile.update');
   Route::get('/mypage/selling', [ProductController::class, 'selling'])->name('user.products.selling');
@@ -56,4 +50,6 @@ Route::middleware('auth')->group(function () {
   Route::post('/products/{product}/like', [LikeController::class, 'store'])->name('products.like');
   Route::delete('/products/{product}/like', [LikeController::class, 'destroy'])->name('products.unlike');
 
+  // コメント投稿のルート
+  Route::post('/item/{product}/comment', [CommentController::class, 'store'])->name('comments.store');
 });

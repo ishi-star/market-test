@@ -67,16 +67,16 @@
             <img src="{{ asset('storage/' . ($comment->user->icon ?? 'default-icon.png')) }}" alt="icon" class="comment__icon">
             <span class="comment__name">{{ $comment->user->name }}</span>
           </div>
-          <p class="comment__body">{{ $comment->body }}</p>
+          <p class="comment__body">{{ $comment->comment }}</p>
         </div>
         @endforeach
       </div>
 
       <!-- コメントフォーム -->
-      <form action="/item/{{ $product->id }}/comment" method="POST" class="comment-form">
+      <form action="{{ route('comments.store', $product->id) }}" method="POST" class="comment-form">
         @csrf
-        <textarea name="body" rows="4" placeholder="商品のコメント" required></textarea>
-        <button type="submit" class="btn btn--red">コメントを送信する</button>
+        <textarea name="comment" rows="4" placeholder="商品のコメント" required></textarea>
+        <button type="submit" class="btn--red">コメントを送信する</button>
       </form>
     </div>
   </div>

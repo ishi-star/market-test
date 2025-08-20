@@ -42,8 +42,8 @@ public function index(Request $request)
     public function show($id)
     {
     $product = Product::with(['comments.user', 'categories'])
-        ->withCount(['likes', 'comments'])
-        ->findOrFail($id);
+                        ->withCount(['likes', 'comments'])
+                        ->findOrFail($id);
 
     $userLiked = false;
     if (Auth::check()) {
