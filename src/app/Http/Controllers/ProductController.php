@@ -7,14 +7,15 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\Condition;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\ProductRequest;
+use App\Http\Requests\ExhibitionRequest;
+
 
 
 class ProductController extends Controller
 {
     // 商品一覧ページ
-public function index(Request $request)
-{
+    public function index(Request $request)
+    {
     $tab = $request->query('tab');
     $keyword = $request->query('keyword');
 
@@ -37,7 +38,7 @@ public function index(Request $request)
     }
 
     return view('index', compact('products', 'keyword'));
-}
+    }
 
     public function show($id)
     {
@@ -61,19 +62,8 @@ public function index(Request $request)
     return view('products.product_create', compact('categories', 'conditions'));
     }
 
-    public function store(Request $request)
+    public function store(ExhibitionRequest $request)
     {
-    $request->validate([
-        'name'        => 'required|string|max:255',
-        'brand_name'  => 'nullable|string|max:255',
-        'description' => 'required|string',
-        'price'       => 'required|numeric|min:0',
-        'condition_id' => 'required|exists:conditions,id',
-        'img_url'     => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        'categories'  => 'required|array',
-        'categories.*' => 'exists:categories,id',
-    ]);
-
     // 画像アップロード
     $path = null;
     if ($request->hasFile('img_url')) {

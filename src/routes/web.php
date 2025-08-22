@@ -52,4 +52,16 @@ Route::middleware('auth')->group(function () {
 
   // コメント投稿のルート
   Route::post('/item/{product}/comment', [CommentController::class, 'store'])->name('comments.store');
+
+
+
+
+
+
+
+
+
+  Route::post('/purchase/{id}/update', [PurchaseController::class, 'update'])->name('purchase.update');
+
+
 });

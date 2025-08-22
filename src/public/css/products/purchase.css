@@ -1,4 +1,4 @@
-.purchase {
+/* .purchase {
   padding: 20px;
   max-width: 1000px;
   margin: auto;
@@ -90,3 +90,23 @@
   font-weight: bold;
   margin-bottom: 10px;
 }
+ */
+/* 
+
+input[type="radio"] {
+  display: none;
+}
+
+label {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-right: 8px;
+  background-color: #eee;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type="radio"]:checked+label {
+  background-color: #ccc;
+  font-weight: bold;
+} */
