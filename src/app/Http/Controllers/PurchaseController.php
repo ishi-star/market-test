@@ -26,7 +26,7 @@ class PurchaseController extends Controller
     public function submit(Request $request, $id)
     {
         $request->validate([
-            'payment_method' => 'required|in:credit,konbini,bank',
+            'payment_method' => 'required|in:credit,konbini',
         ]);
 
         // 本来は購入レコード作成などを行う
@@ -41,15 +41,22 @@ class PurchaseController extends Controller
             'sending_zip' => $profile->zip,
             'sending_address' => $profile->address,
             'sending_building' => $profile->building,
+            'payment_method'  => $request->payment_method,
         ]);
 
         // 支払い方法をセッションに保存して購入画面に戻す
-        return redirect()
-            // ->route('purchase.show', ['id' => $id])
-            // ->with('selected_payment_method', $request->payment_method)
+        // return redirect()
+        //     ->route('purchase.show', ['id' => $id])
+        //     ->with('selected_payment_method', $request->payment_method)
+        //     ->with('success', '購入が完了しました！');
+            // ->route('products.index');
             // ->with('success', '購入が完了しました！');
-            ->route('products.index') // ← 商品一覧ページへ遷移
-            ->with('success', '購入が完了しました！');
+        return redirect()
+    ->route('products.index')
+    ->with([
+        'success' => '購入が完了しました！',
+        'selected_payment_method' => $request->payment_method,
+    ]);
 
 
 

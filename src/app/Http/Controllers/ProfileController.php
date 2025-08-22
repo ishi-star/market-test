@@ -65,9 +65,9 @@ class ProfileController extends Controller
     // リダイレクト先を存在するルート名に変更
     return redirect()->route('mypage')->with('success', 'プロフィールを登録しました');
 }
-//         public function edit()
-//     {
-//         $user = Auth::user(); // 現在ログイン中のユーザー情報
-//         return view('mypage.profile_create', compact('user'));
-//     }
+        public function edit()
+    {
+        $user = Auth::user(); // 現在ログイン中のユーザー情報
+        return view('mypage.profile_create', compact('user'));
+    }
 }

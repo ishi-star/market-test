@@ -14,7 +14,8 @@ class SoldProduct extends Model
         'product_id',
         'sending_zip',
         'sending_address',
-        'sending_building'
+        'sending_building',
+        'payment_method',
     ];
 
         public function user()

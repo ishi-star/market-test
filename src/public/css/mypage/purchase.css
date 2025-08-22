@@ -1,8 +1,8 @@
 /* 全体 */
 .purchase {
-  max-width: 1000px;
-  margin: 40px auto;
-  padding: 0 20px;
+  max-width: 100%;
+  /* margin: 70px 70px; */
+  padding: 50px 20px;
 }
 
 .purchase__heading {
@@ -44,8 +44,8 @@
 }
 
 .purchase__product-image img {
-  width: 120px;
-  height: 120px;
+  width: 200px;
+  height: 200px;
   object-fit: cover;
   border-radius: 8px;
 }
@@ -113,9 +113,9 @@
 .purchase__submit-btn {
   display: block;
   width: 100%;
-  background-color: #e60023;
+  background-color: #e23953;
   color: white;
-  padding: 12px;
+  padding: 10px;
   border: none;
   border-radius: 8px;
   font-size: 16px;
@@ -136,10 +136,15 @@
 
 .purchase__summary-title {
   font-weight: bold;
+  border: 1px solid #ddd;
   margin-bottom: 15px;
   font-size: 16px;
+  margin-bottom: 30px;
+  padding: 1.1em 2em;
 }
 
 .purchase__summary-item {
-  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  padding: 30px;
+  font-size: 14px;
 }

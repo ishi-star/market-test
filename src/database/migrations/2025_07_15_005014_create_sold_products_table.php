@@ -20,6 +20,7 @@ class CreateSoldProductsTable extends Migration
             $table->string('sending_zip');
             $table->string('sending_address');
             $table->string('sending_building')->nullable();
+            $table->string('payment_method');
             $table->timestamps();
         });
     }

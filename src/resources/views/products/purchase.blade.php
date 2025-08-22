@@ -14,9 +14,8 @@
   @endif
 
 
-  <h2 class="purchase__heading content__heading">商品購入</h2>
+  <!-- <h2 class="purchase__heading content__heading">商品購入</h2> -->
   <div class="purchase__container">
-
     {{-- 左側：商品情報とフォーム --}}
     <div class="purchase__left">
       <div class="purchase__product-box">
@@ -66,7 +65,6 @@
     {{-- 右側：明細 --}}
     <div class="purchase__right">
       <div class="purchase__summary-box">
-        <p class="purchase__summary-title">購入内容</p>
         <p class="purchase__summary-item">商品代金：¥{{ number_format($product->price) }}</p>
         <p class="purchase__summary-item">
           支払い方法：
@@ -75,8 +73,6 @@
               カード
             @elseif ($selectedPaymentMethod === 'konbini')
               コンビニ払い
-            @elseif ($selectedPaymentMethod === 'bank')
-              銀行振込
             @else
               未選択
             @endif

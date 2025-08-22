@@ -24,10 +24,10 @@
 } */
 
 .mypage__avatar-img {
-  max-width: 100px;
-    /* 横幅が大きい場合は200pxまでに縮小 */
-  height: auto;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
+  object-fit: cover;
 }
 
 .mypage__username {

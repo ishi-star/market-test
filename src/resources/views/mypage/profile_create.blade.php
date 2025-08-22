@@ -30,7 +30,8 @@
 
       <div class="profile-form__group">
         <label class="profile-form__label" for="username">ユーザー名</label>
-        <input class="profile-form__input" type="text" name="name" id="name" placeholder="例：山田太郎">
+        <input class="profile-form__input" type="text" name="name" id="name" placeholder="例：山田太郎"
+        value="{{ old('name', $user->profile->name ?? '') }}">
         @error('name')
         <p class="profile-form__error-message">{{ $message }}</p>
         @enderror
@@ -38,7 +39,8 @@
 
       <div class="profile-form__group">
         <label class="profile-form__label">郵便番号</label>
-        <input class="profile-form__input" type="text" name="zip" placeholder="例：123-4567">
+        <input class="profile-form__input" type="text" name="zip" placeholder="例：123-4567"
+        value="{{ old('zip', $user->profile->zip ?? '') }}">
         @error('zip')
         <p class="profile-form__error-message">{{ $message }}</p>
         @enderror
@@ -46,7 +48,8 @@
 
       <div class="profile-form__group">
         <label class="profile-form__label" for="address">住所</label>
-        <input class="profile-form__input" type="text" name="address" id="address" placeholder="例：名古屋市中区">
+        <input class="profile-form__input" type="text" name="address" id="address" placeholder="例：名古屋市中区"
+        value="{{ old('address', $user->profile->address ?? '') }}">
         @error('address')
         <p class="profile-form__error-message">{{ $message }}</p>
         @enderror
@@ -54,7 +57,8 @@
 
       <div class="profile-form__group">
         <label class="profile-form__label" for="building">建物名</label>
-        <input class="profile-form__input" type="text" name="building" id="building" placeholder="例：COACHTECHビル3F">
+        <input class="profile-form__input" type="text" name="building" id="building" placeholder="例：COACHTECHビル3F"
+        value="{{ old('building', $user->profile->building ?? '')}}">
         @error('building')
         <p class="profile-form__error-message">{{ $message }}</p>
         @enderror

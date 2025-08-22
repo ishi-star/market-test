@@ -17,7 +17,7 @@
         <img src="{{ asset('images/default-profile.png') }}" alt="デフォルト画像" class="mypage__avatar-img">
       @endif
     </div>
-    <div class="mypage__username">{{ $user->name }}</div>
+    <div class="mypage__username"> {{ $user->profile->name ?? '未設定' }}</div>
     <a href="{{ route('user.profile.edit') }}" class="mypage__edit-btn">プロフィールを編集</a>
   </div>
   {{-- タブ --}}
