@@ -36,21 +36,24 @@ class ProfileController extends Controller
 
     public function store(Request $request)
 {
+
     $validated = $request->validate([
-        'avatar'   => 'nullable|image|max:2048',
-        'name' => 'required|string|max:255',
-        'zip' => 'required|string|max:20', // DBカラムに合わせる
+        'img_url'  => 'nullable|image|mimes:jpeg,png|max:2048',
+        'name'     => 'required|string|max:255',
+        'zip'      => 'required|string|max:20', // DBカラムに合わせる
         'address'  => 'required|string|max:255',
         'building' => 'nullable|string|max:255',
     ]);
 
+
+        $user = auth()->user();
+
     // 画像の保存
-    if ($request->hasFile('avatar')) {
-        $path = $request->file('avatar')->store('avatars', 'public');
-        $validated['avatar'] = $path;
+    if ($request->hasFile('img_url')) {
+        $path = $request->file('img_url')->store('profile', 'public');
+        $validated['img_url'] = $path;
     }
 
-    $user = auth()->user();
 
     // 既に profile があれば更新、なければ作成
     if ($user->profile) {
@@ -62,9 +65,9 @@ class ProfileController extends Controller
     // リダイレクト先を存在するルート名に変更
     return redirect()->route('mypage')->with('success', 'プロフィールを登録しました');
 }
-        public function edit()
-    {
-        $user = Auth::user(); // 現在ログイン中のユーザー情報
-        return view('mypage.profile_create', compact('user'));
-    }
+//         public function edit()
+//     {
+//         $user = Auth::user(); // 現在ログイン中のユーザー情報
+//         return view('mypage.profile_create', compact('user'));
+//     }
 }

@@ -12,16 +12,18 @@
 @section('content')
 
 <div class="profile-form">
+
   <h2 class="profile-form__heading content__heading">プロフィール登録</h2>
   <div class="profile-form__inner">
     <form class="profile-form__form" action="{{ route('profile.store') }}" method="post" enctype="multipart/form-data">
-
       @csrf
-
       <div class="profile-form__group">
         <label class="profile-form__label">プロフィール画像</label>
-        <input class="profile-form__input" type="file" name="avatar">
-        @error('avatar')
+          @if(isset($user->profile->img_url))
+          <img src="{{ Storage::url($user->profile->img_url) }}" alt="プロフィール画像" class="profile-form__preview" style="max-width:150px; display:block; margin-bottom:10px;">
+          @endif
+        <input class="profile-form__input" type="file" name="img_url">
+        @error('img_url')
         <p class="profile-form__error-message">{{ $message }}</p>
         @enderror
       </div>
@@ -29,7 +31,7 @@
       <div class="profile-form__group">
         <label class="profile-form__label" for="username">ユーザー名</label>
         <input class="profile-form__input" type="text" name="name" id="name" placeholder="例：山田太郎">
-        @error('username')
+        @error('name')
         <p class="profile-form__error-message">{{ $message }}</p>
         @enderror
       </div>

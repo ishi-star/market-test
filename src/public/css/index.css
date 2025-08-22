@@ -3,10 +3,9 @@
 }
 
 .product-list__tab {
+  border-bottom: 2px solid #ccc;
   display: flex;
-  border-bottom: 1px solid #ccc;
-  margin-bottom: 20px;
-  margin-top: 12%;
+  margin: 50px 30px 20px;
 }
 
 .product-list__tab-link {

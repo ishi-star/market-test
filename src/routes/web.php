@@ -25,7 +25,7 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::get('/profile', [ProfileController::class, 'create'])->name('profile.create');
 Route::post('/profile', [ProfileController::class, 'store'])->name('profile.store');
 
-Route::get('/item/{id}', [ProductController::class, 'show'])->name('products.show');
+Route::get('/item/{product}', [ProductController::class, 'show'])->name('products.show');
 
 Route::middleware('auth')->group(function () {
   Route::get('/?tab=mylist', [ProductController::class, 'index'])->name('products.index');

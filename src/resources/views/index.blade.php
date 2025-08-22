@@ -21,7 +21,7 @@
       @auth
           @foreach ($products as $product)
             <div class="product-list__item">
-              <a href="{{ route('products.show', ['id' => $product->id]) }}" class="product-list__decoration">
+              <a href="{{ route('products.show', ['product' => $product->id]) }}" class="product-list__decoration">
                 <img src="{{ asset('storage/' . $product->img_url) }}" alt="{{ $product->name }}" class="product-list__image">
                 
                 {{--  SOLD 表示 --}}
@@ -38,7 +38,7 @@
       {{-- おすすめタブ --}}
       @foreach ($products as $product)
         <div class="product-list__item">
-          <a href="{{ route('products.show', ['id' => $product->id]) }}" class="product-list__decoration">
+          <a href="{{ route('products.show', ['product' => $product->id]) }}" class="product-list__decoration">
             <img src="{{ asset('storage/' . $product->img_url) }}" alt="{{ $product->name }}" class="product-list__image">
             
             {{-- ✅ SOLD 表示 --}}
