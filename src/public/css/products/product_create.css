@@ -1,0 +1,145 @@
+.container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #fff;
+}
+
+/* ラベル + 入力欄 */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+/* テキスト入力・セレクト・テキストエリア */
+input[type="text"],
+input[type="number"],
+select,
+textarea {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+textarea {
+  resize: vertical;
+}
+
+/* ファイル選択 */
+input[type="file"] {
+  margin-top: 5px;
+}
+
+/* 複数チェックボックス */
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.checkbox-group label {
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* ボタン */
+.submit-btn {
+  display: inline-block;
+  width: 100%;
+  padding: 12px;
+  background: #007bff;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.submit-btn:hover {
+  background: #0056b3;
+}
+
+/* チェックボックスは非表示にする */
+.category {
+  display: none;
+}
+
+/* ラベルをボタン風に */
+.checkbox-group label {
+  display: inline-block;
+  padding: 6px 16px;
+  border: 2px solid #ff4d4d;
+  border-radius: 20px;
+  font-size: 14px;
+  color: #ff4d4d;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+/* ホバー時の変化 */
+.checkbox-group label:hover {
+  background: #ffeaea;
+}
+
+/* 選択されたときのスタイル */
+.category:checked+span {
+  background: #ff4d4d;
+  color: #fff;
+  font-weight: bold;
+}
+
+.product-img {
+  display: none;
+  /* ファイル入力を非表示 */
+}
+
+.custom-file-label {
+  display: inline-block;
+  /* 元に戻す */
+  text-align: center;
+  /* テキスト中央寄せ */
+  padding: 8px 20px;
+  /* ボタンサイズ調整 */
+  border: 2px solid #ff4b4b;
+  color: #ff4b4b;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.product-border {
+  border: 1px dashed #ddd;
+  text-align: center;
+  /* 子要素を中央配置 */
+  padding: 20px 0;
+  /* 高さ調整 */
+}
+
+.product-sale {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #ff4b4b;
+  /* お好みで色変更 */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  /* 角を丸くする */
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.product-sale:hover {
+  background-color: #ff2020;
+  /* ホバー時の色 */
+}

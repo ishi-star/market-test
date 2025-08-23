@@ -1,5 +1,5 @@
 <?php
-
+// ログインとレジスターの処理
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -20,12 +20,8 @@ class AuthController extends Controller
     // 登録処理（必要なら）
     public function register(RegisterRequest $request)
     {
-        // 登録処理を書く（今回は表示のみでOK）
-        $validated = $request->validate([
-        'name' => 'required|string|max:255',
-        'email' => 'required|email|unique:users',
-        'password' => 'required|string|min:6|confirmed',
-    ]);
+        $validated = $request->validate();
+
         $user = User::create([
         'name' => $validated['name'],
         'email' => $validated['email'],
