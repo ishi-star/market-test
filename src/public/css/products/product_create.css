@@ -139,7 +139,6 @@ input[type="file"] {
   width: 100%;
   padding: 12px;
   background: #ff4b4b;
-  background: #007bff;
   color: #fff;
   font-size: 16px;
   font-weight: bold;
@@ -159,7 +158,7 @@ input[type="file"] {
   color: #e3342f;
   font-size: 12px;
   margin-top: 2px;
-  background: #0056b3;
+
 }
 
 /* チェックボックスは非表示にする */
