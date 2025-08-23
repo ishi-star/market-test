@@ -7,8 +7,8 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\Condition;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\ProductRequest;
 use App\Http\Requests\ExhibitionRequest;
-
 
 
 class ProductController extends Controller
@@ -64,6 +64,9 @@ class ProductController extends Controller
 
     public function store(ExhibitionRequest $request)
     {
+
+        $validated = $request->validated();
+
     // 画像アップロード
     $path = null;
     if ($request->hasFile('img_url')) {

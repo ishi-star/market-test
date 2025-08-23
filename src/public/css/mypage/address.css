@@ -1,5 +1,5 @@
 .address-page {
-  max-width: 600px;
+  width: 500px;
   margin: 60px auto;
   padding: 40px;
   background-color: #fff;
@@ -22,6 +22,7 @@
 .address-form label {
   font-size: 16px;
   margin-bottom: 8px;
+  font-weight: bold;
   color: #333;
 }
 
@@ -34,19 +35,20 @@
 }
 
 .form-button {
+  
   text-align: center;
   margin-top: 30px;
 }
 
 .form-button button {
   padding: 12px 32px;
+  width: 100%;
   background-color: #ff5b5b;
   color: #fff;
   border: none;
   border-radius: 8px;
   font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.3s;
 }
 
 .form-button button:hover {

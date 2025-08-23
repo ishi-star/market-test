@@ -24,12 +24,12 @@ class ExhibitionRequest extends FormRequest
     public function rules()
     {
         return [
+            'img_url'      => 'required|image|mimes:jpeg,png',
             'name'         => 'required|string',
             'brand_name'   => 'nullable|string',
             'description'  => 'required|string|max:255',
             'price'        => 'required|numeric|min:0',
             'condition_id' => 'required|exists:conditions,id',
-            'img_url'      => 'required|image|mimes:jpeg,png',
             'categories'   => 'required|array',
             'categories.*' => 'exists:categories,id',
         ];
@@ -39,7 +39,6 @@ class ExhibitionRequest extends FormRequest
     {
         return [
             'name.required'         => '商品名は必須です。',
-            'name.max'              => '商品名は255文字以内で入力してください。',
             'description.required'  => '商品の説明を入力してください。',
             'price.required'        => '価格を入力してください。',
             'price.numeric'         => '価格は数値で入力してください。',
@@ -49,7 +48,6 @@ class ExhibitionRequest extends FormRequest
             'img_url.image'         => 'アップロードできるのは画像ファイルのみです。',
             "img_url.required"      => '画像を選択してください',
             'img_url.mimes'         => '画像形式は jpeg, png, jpg, のいずれかを指定してください。',
-            'img_url.max'           => '画像サイズは2MB以下にしてください。',
             'categories.required'   => 'カテゴリを1つ以上選択してください。',
             'categories.*.exists'   => '選択されたカテゴリは無効です。',
         ];
