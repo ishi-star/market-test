@@ -1,6 +1,7 @@
 /* フォーム全体 */
 .container {
   width: 40vw;
+}
 .container {
   max-width: 600px;
   margin: 40px auto;
@@ -126,6 +127,7 @@ input[type="file"] {
 .category:checked+span {
   background-color: #ff4b4b;
   color: #ffffff;
+}
 .checkbox-group label {
   font-size: 14px;
   cursor: pointer;

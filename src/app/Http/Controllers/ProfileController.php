@@ -8,6 +8,8 @@ use App\Models\Profile;
 use App\Models\Product;
 use App\Models\Purchase;
 use App\Models\SoldProduct;
+use App\Http\Requests\ProfileRequest;
+
 
 class ProfileController extends Controller
 {
@@ -34,16 +36,10 @@ class ProfileController extends Controller
     return view('mypage.profile_create'); // 作成したBladeファイル名に合わせる
 }
 
-    public function store(Request $request)
+    public function store(ProfileRequest $request)
 {
 
-    $validated = $request->validate([
-        'img_url'  => 'nullable|image|mimes:jpeg,png|max:2048',
-        'name'     => 'required|string|max:255',
-        'zip'      => 'required|string|max:20', // DBカラムに合わせる
-        'address'  => 'required|string|max:255',
-        'building' => 'nullable|string|max:255',
-    ]);
+    $validated = $request->validated();
 
 
         $user = auth()->user();
