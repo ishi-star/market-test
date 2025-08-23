@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\PurchaseRequest;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use App\Models\SoldProduct;
+use Illuminate\Http\Request;
+use App\Http\Requests\ExhibitionRequest;
 
 class PurchaseController extends Controller
 {
@@ -23,11 +25,9 @@ class PurchaseController extends Controller
     }
 
     // 購入処理
-    public function submit(Request $request, $id)
+    public function submit(PurchaseRequest $request, $id)
     {
-        $request->validate([
-            'payment_method' => 'required|in:credit,konbini',
-        ]);
+        $validated = $request->validated();
 
         // 本来は購入レコード作成などを行う
         $product = Product::findOrFail($id);
@@ -57,9 +57,6 @@ class PurchaseController extends Controller
         'success' => '購入が完了しました！',
         'selected_payment_method' => $request->payment_method,
     ]);
-
-
-
     }
 
         // 住所編集画面表示
@@ -85,24 +82,15 @@ class PurchaseController extends Controller
             $validated                 // 更新データ
         );
 
-        return redirect()->route('purchase.show', ['id' => $item_id])
-                         ->with('success', '住所を更新しました。');
+        return redirect()->route('purchase.show', ['id' => $item_id]);
     }
 
-    public function store(Request $request)
-{
-    $validated = $request->validate([
-        'img_url' => 'required|image',
-        'name' => 'required|string|max:255',
-        'brand_name' => 'nullable|string|max:255',
-        'description' => 'required|string',
-        'price' => 'required|numeric',
-        'condition_id' => 'required|exists:conditions,id',
-        'categories' => 'required|array',
-        'categories.*' => 'exists:categories,id',
-    ]);
+    public function store(ExhibitionRequest $request)
+    {
+    // リクエストバリデーション済みデータを取得
+    $validated = $request->validated();
 
-    // 画像保存処理
+    // 画像保存
     $path = $request->file('img_url')->store('images', 'public');
 
     // 商品登録
@@ -113,10 +101,10 @@ class PurchaseController extends Controller
     $product->description = $validated['description'];
     $product->price = $validated['price'];
     $product->condition_id = $validated['condition_id'];
-    $product->user_id = auth()->id(); // ログインユーザーが前提
+    $product->user_id = auth()->id();
     $product->save();
 
-    // カテゴリを中間テーブルに保存
+    // カテゴリ保存
     $product->categories()->attach($validated['categories']);
 
     return redirect()->route('products.index')->with('success', '商品を出品しました');

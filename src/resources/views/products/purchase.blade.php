@@ -30,6 +30,7 @@
 
       <form class="purchase__form" action="{{ route('purchase.submit', $product->id) }}" method="POST">
         @csrf
+        <input type="hidden" name="address_id" value="{{ $profile->id }}">
         <div class="purchase__form-group">
           <label class="purchase__label" for="payment_method">支払い方法</label>
           <select class="purchase__select" name="payment_method" id="payment_method" required>
@@ -70,7 +71,7 @@
           支払い方法：
           <span id="selected-payment-method">
             @if ($selectedPaymentMethod === 'credit')
-              カード
+              カード払い
             @elseif ($selectedPaymentMethod === 'konbini')
               コンビニ払い
             @else
