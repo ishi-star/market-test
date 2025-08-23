@@ -8,6 +8,8 @@ use App\Models\Category;
 use App\Models\Condition;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ProductRequest;
+use App\Http\Requests\ExhibitionRequest;
+
 
 
 class ProductController extends Controller
@@ -61,18 +63,9 @@ public function index(Request $request)
     return view('products.product_create', compact('categories', 'conditions'));
     }
 
-    public function store(Request $request)
+    public function store(ExhibitionRequest $request)
     {
-    $request->validate([
-        'name'        => 'required|string|max:255',
-        'brand_name'  => 'nullable|string|max:255',
-        'description' => 'required|string',
-        'price'       => 'required|numeric|min:0',
-        'condition_id' => 'required|exists:conditions,id',
-        'img_url'     => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        'categories'  => 'required|array',
-        'categories.*' => 'exists:categories,id',
-    ]);
+        $validated = $request->validated();
 
     // 画像アップロード
     $path = null;
