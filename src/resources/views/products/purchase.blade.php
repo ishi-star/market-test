@@ -87,16 +87,6 @@
 </div>
 
 
-
-<form method="POST" action="{{ route('purchase.update', ['id' => $product->id]) }}">    @csrf
-    <label><input type="radio" name="payment_method" value="カード"> カード</label><br>
-    <label><input type="radio" name="payment_method" value="コンビニ払い"> コンビニ払い</label><br>
-    <label><input type="radio" name="payment_method" value="日本 東京テレポート"> 日本 東京テレポート</label><br>
-
-    <button type="submit">変更する</button>
-</form>
-
-
 @endsection
 
 
