@@ -16,27 +16,16 @@
     <div class="product-border">
       <label for="img_url" class="custom-file-label">画像を選択する</label>
       <input class="product-img" type="file" name="img_url" id="img_url" accept="image/*">
-<<<<<<< HEAD
       <img class="img_preview" id="img_preview" src="" >
       @error('img_url')
         <div class="error-message">{{ $message }}</div>
       @enderror
-=======
-      @error('img_url')
-        <div class="text-danger">{{ $message }}</div>
-      @enderror
-      <!-- プレビュー用 -->
-      <img id="img_preview" src="" alt="プレビュー画像" style="display:none; max-width:200px; margin-top:10px;">
->>>>>>> tmp-exhibition
     </div>
 
     <script>
       const input = document.getElementById('img_url');
       const preview = document.getElementById('img_preview');
-<<<<<<< HEAD
-=======
 
->>>>>>> tmp-exhibition
       input.addEventListener('change', function() {
         const file = this.files[0];
         if (file) {
@@ -53,11 +42,8 @@
       });
     </script>
 
-<<<<<<< HEAD
     {{-- カテゴリー（複数選択） --}}
-=======
     {{-- カテゴリー --}}
->>>>>>> tmp-exhibition
     <div class="form-group">
       <h3 class="product-detail">商品の詳細</h3>
       <h4>カテゴリー</h4>
@@ -65,21 +51,15 @@
         @foreach ($categories as $category)
           <label>
             <input class="category" type="checkbox" name="categories[]" value="{{ $category->id }}"
-<<<<<<< HEAD
                   @if(in_array($category->id, old('categories', []))) checked @endif>
-=======
               @if(in_array($category->id, old('categories', []))) checked @endif>
->>>>>>> tmp-exhibition
             <span>{{ $category->category }}</span>
           </label>
         @endforeach
       </div>
       @error('categories')
-<<<<<<< HEAD
         <div class="error-message">{{ $message }}</div>
-=======
         <div class="text-danger">{{ $message }}</div>
->>>>>>> tmp-exhibition
       @enderror
     </div>
 
@@ -89,39 +69,30 @@
       <select name="condition_id" id="condition_id">
         <option value="">選択してください</option>
         @foreach ($conditions as $condition)
-<<<<<<< HEAD
           <option value="{{ $condition->id }}" {{ old('condition_id') == $condition->id ? 'selected' : '' }}>
-=======
           <option value="{{ $condition->id }}" @if(old('condition_id') == $condition->id) selected @endif>
->>>>>>> tmp-exhibition
             {{ $condition->condition }}
           </option>
         @endforeach
       </select>
       @error('condition_id')
-<<<<<<< HEAD
         <div class="error-message">{{ $message }}</div>
-=======
         <div class="text-danger">{{ $message }}</div>
->>>>>>> tmp-exhibition
       @enderror
     </div>
 
     {{-- 商品名 --}}
-<<<<<<< HEAD
     <div class="form-group">
       <label for="name">商品名</label>
       <input type="text" name="name" id="name" value="{{ old('name') }}">
       @error('name')
         <div class="error-message">{{ $message }}</div>
-=======
     <h3 class="product-detail">商品名と説明</h3>
     <div>
       <label for="name">商品名</label>
       <input type="text" name="name" id="name" value="{{ old('name') }}">
       @error('name')
         <div class="text-danger">{{ $message }}</div>
->>>>>>> tmp-exhibition
       @enderror
     </div>
 
@@ -130,11 +101,8 @@
       <label for="brand_name">ブランド名</label>
       <input type="text" name="brand_name" id="brand_name" value="{{ old('brand_name') }}">
       @error('brand_name')
-<<<<<<< HEAD
         <div class="error-message">{{ $message }}</div>
-=======
         <div class="text-danger">{{ $message }}</div>
->>>>>>> tmp-exhibition
       @enderror
     </div>
 
@@ -143,11 +111,8 @@
       <label for="description">商品の説明</label>
       <textarea name="description" id="description" rows="5">{{ old('description') }}</textarea>
       @error('description')
-<<<<<<< HEAD
         <div class="error-message">{{ $message }}</div>
-=======
         <div class="text-danger">{{ $message }}</div>
->>>>>>> tmp-exhibition
       @enderror
     </div>
 
@@ -156,19 +121,16 @@
       <label for="price">販売価格</label>
       <input type="number" name="price" id="price" value="{{ old('price') }}">
       @error('price')
-<<<<<<< HEAD
         <div class="error-message">{{ $message }}</div>
       @enderror
     </div>
 
     <button type="submit" class="submit-btn">出品する</button>
-=======
         <div class="text-danger">{{ $message }}</div>
       @enderror
     </div>
 
     <button class="product-sale" type="submit">出品する</button>
->>>>>>> tmp-exhibition
   </form>
 </div>
 @endsection
