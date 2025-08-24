@@ -79,6 +79,7 @@ class PurchaseController extends Controller
 
     public function store(ExhibitionRequest $request)
     {
+        // 出品画面
     // リクエストバリデーション済みデータを取得
     $validated = $request->validated();
 

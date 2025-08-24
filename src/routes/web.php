@@ -17,6 +17,7 @@ use App\Http\Controllers\AddressController;
 */
 
 Route::get('/', [ProductController::class, 'index'])->name('products.index');
+
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
 Route::post('/register', [AuthController::class, 'register'])->name('register.submit');
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
@@ -36,7 +37,7 @@ Route::middleware('auth')->group(function () {
   Route::get('/mypage', [ProfileController::class, 'mypage'])->name('mypage');
   Route::get('/mypage/profile', [ProfileController::class, 'edit'])->name('user.profile.edit');
 
-  
+  // 商品購入画面
   Route::get('/sell', [ProductController::class, 'create'])->name('products.create');
   Route::post('/sell', [ProductController::class, 'store'])->name('products.store');
 
@@ -47,7 +48,7 @@ Route::middleware('auth')->group(function () {
 
 
   // Route::post('/mypage/profile/update', [ProfileController::class, 'update'])->name('user.profile.update');
-  Route::get('/mypage/selling', [ProductController::class, 'selling'])->name('user.products.selling');
+  // Route::get('/mypage/selling', [ProductController::class, 'selling'])->name('user.products.selling');
 
   Route::post('/products/{product}/like', [LikeController::class, 'store'])->name('products.like');
   Route::delete('/products/{product}/like', [LikeController::class, 'destroy'])->name('products.unlike');
