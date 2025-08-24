@@ -37,7 +37,7 @@
             <option value="">選択してください</option>
             <option value="credit"
               {{ old('payment_method', $selectedPaymentMethod) === 'credit' ? 'selected' : '' }}>
-              カード
+              カード払い
             </option>
             <option value="konbini"
               {{ old('payment_method', $selectedPaymentMethod) === 'konbini' ? 'selected' : '' }}>
