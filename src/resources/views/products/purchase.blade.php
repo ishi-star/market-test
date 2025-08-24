@@ -33,7 +33,7 @@
         <input type="hidden" name="address_id" value="{{ $profile->id }}">
         <div class="purchase__form-group">
           <label class="purchase__label" for="payment_method">支払い方法</label>
-          <select class="purchase__select" name="payment_method" id="payment_method" required>
+          <select class="purchase__select" name="payment_method" id="payment_method" >
             <option value="">選択してください</option>
             <option value="credit"
               {{ old('payment_method', $selectedPaymentMethod) === 'credit' ? 'selected' : '' }}>
