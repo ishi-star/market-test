@@ -36,8 +36,11 @@ php artisan storage:link
 - PHP8.3.6
 - Laravel8.83.8
 - MySQL8.0.43
+- nginx1.21.1
 
 ## URL
 - 開発環境：http://localhost/
 - phpMyAdmin:：http://localhost:8080/
+- ユーザー登録：http://localhost/register
+
 
