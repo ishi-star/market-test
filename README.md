@@ -4,11 +4,12 @@
 - git clone git@github.com:ishi-star/market-test.git
 - cd market-test
 - DockerDesktopアプリを立ち上げる
+- docker/php/DockerfileのFROM php:7.4.9-fpmをFROM php:7.4-fpmに書き換える
 - docker-compose up -d --build
 ### Laravel環境構築
 - docker-compose exec php bash
 - composer install
-- 「.env.example」ファイルを 「.env」ファイルに命名を変更。または新しく.envファイルを作成。
+- 「.env.example」ファイルを 「.env」ファイルに命名を変更。または新しく.envファイルを作成
 - 「.env」に以下の環境変数を追加
 ```
 DB_CONNECTION=mysql
