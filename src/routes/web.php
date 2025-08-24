@@ -7,7 +7,7 @@ use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\CommentController;
-
+use App\Http\Controllers\AddressController;
 
 /*
 |--------------------------------------------------
@@ -34,7 +34,9 @@ Route::middleware('auth')->group(function () {
   Route::post('/profile/store', [ProfileController::class, 'store'])->name('profile.store');
 // マイページ
   Route::get('/mypage', [ProfileController::class, 'mypage'])->name('mypage');
+  Route::get('/mypage/profile', [ProfileController::class, 'edit'])->name('user.profile.edit');
 
+  
   Route::get('/sell', [ProductController::class, 'create'])->name('products.create');
   Route::post('/sell', [ProductController::class, 'store'])->name('products.store');
 
@@ -43,8 +45,8 @@ Route::middleware('auth')->group(function () {
   Route::get('/purchase/address/{item_id}', [PurchaseController::class, 'edit'])->name('address.edit');
   Route::post('/purchase/address/{item_id}', [PurchaseController::class, 'update'])->name('address.update');
 
-  Route::get('/mypage/profile/edit', [ProfileController::class, 'edit'])->name('user.profile.edit');
-  Route::post('/mypage/profile/update', [ProfileController::class, 'update'])->name('user.profile.update');
+
+  // Route::post('/mypage/profile/update', [ProfileController::class, 'update'])->name('user.profile.update');
   Route::get('/mypage/selling', [ProductController::class, 'selling'])->name('user.products.selling');
 
   Route::post('/products/{product}/like', [LikeController::class, 'store'])->name('products.like');

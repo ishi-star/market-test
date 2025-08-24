@@ -22,12 +22,12 @@
   </div>
   {{-- タブ --}}
   <div class="mypage__tabs">
-    <a href="{{ route('mypage', ['tab' => 'selling']) }}" 
-       class="mypage__tab {{ $tab === 'selling' ? 'active' : '' }}">
+    <a href="{{ route('mypage', ['page' => 'buy']) }}" 
+       class="mypage__tab {{ $page === 'selling' ? 'active' : '' }}">
       出品した商品
     </a>
-    <a href="{{ route('mypage', ['tab' => 'purchased']) }}" 
-       class="mypage__tab {{ $tab === 'purchased' ? 'active' : '' }}">
+    <a href="{{ route('mypage', ['page' => 'sell']) }}" 
+       class="mypage__tab {{ $page === 'sell' ? 'active' : '' }}">
       購入した商品
     </a>
   </div>
@@ -35,7 +35,7 @@
   {{-- 出品した商品 --}}
 
 <div class="product-list__grid">
-  @if ($tab === 'selling')
+  @if ($page === 'buy')
     @forelse ($sellingProducts as $product)
       <div class="product-list__item">
         <a href="{{ route('products.show', ['product' => $product->id]) }}" class="product-list__decoration">

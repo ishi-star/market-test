@@ -74,7 +74,7 @@ class PurchaseController extends Controller
             $validated                 // 更新データ
         );
 
-        return redirect()->route('purchase.show', ['id' => $item_id]);
+    return redirect()->route('purchase.show', ['id' => $item_id]);
     }
 
     public function store(ExhibitionRequest $request)

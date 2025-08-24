@@ -1,5 +1,5 @@
 <?php
-
+// このリクエストフォームを使用しようとするとエラーが出る
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
