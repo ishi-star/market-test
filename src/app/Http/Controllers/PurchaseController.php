@@ -18,7 +18,7 @@ class PurchaseController extends Controller
         $user = Auth::user();
         $profile = $user->profile; // profilesテーブルから住所情報を取得
 
-            // セッションから支払い方法を取得
+        // セッションから支払い方法を取得
         $selectedPaymentMethod = session('selected_payment_method', null);
 
         return view('products.purchase', compact('product', 'user', 'profile', 'selectedPaymentMethod'));
@@ -29,12 +29,11 @@ class PurchaseController extends Controller
     {
         $validated = $request->validated();
 
-        // 本来は購入レコード作成などを行う
         $product = Product::findOrFail($id);
         $user = Auth::user();
         $profile = $user->profile;
 
-                // SoldProduct に購入情報を保存
+        // SoldProduct に購入情報を保存
         SoldProduct::create([
             'user_id' => $user->id,
             'product_id' => $product->id,
@@ -44,13 +43,6 @@ class PurchaseController extends Controller
             'payment_method'  => $request->payment_method,
         ]);
 
-        // 支払い方法をセッションに保存して購入画面に戻す
-        // return redirect()
-        //     ->route('purchase.show', ['id' => $id])
-        //     ->with('selected_payment_method', $request->payment_method)
-        //     ->with('success', '購入が完了しました！');
-            // ->route('products.index');
-            // ->with('success', '購入が完了しました！');
         return redirect()
     ->route('products.index')
     ->with([
