@@ -72,7 +72,7 @@
 }
 
 .login-form__error-message {
-    color: rgba(255, 25, 25, 0.918);
-      font-size: 1rem;
-      margin-top: 0.25rem;
+  color: rgba(255, 25, 25, 0.918);
+  font-size: 1rem;
+  margin-top: 0.25rem;
 }

@@ -35,7 +35,6 @@
 }
 
 .form-button {
-  
   text-align: center;
   margin-top: 30px;
 }
@@ -53,4 +52,10 @@
 
 .form-button button:hover {
   background-color: #ff3b3b;
+}
+
+.text-danger {
+  color: rgba(255, 25, 25, 0.918);
+  font-size: 1rem;
+  margin-top: 0.25rem;
 }
