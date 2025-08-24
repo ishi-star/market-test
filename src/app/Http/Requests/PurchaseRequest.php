@@ -25,7 +25,7 @@ class PurchaseRequest extends FormRequest
     {
         return [
             'payment_method' => ['required', 'in:credit,konbini'],
-            'address_id'     => ['required', 'exists:profiles,id'], 
+            'address_id'     => ['required', 'exists:profiles,id'],
         ];
     }
 

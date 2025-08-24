@@ -13,7 +13,6 @@
     </div>
   @endif
 
-
   <!-- <h2 class="purchase__heading content__heading">商品購入</h2> -->
   <div class="purchase__container">
     {{-- 左側：商品情報とフォーム --}}
