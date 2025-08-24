@@ -5,6 +5,7 @@
 - cd market-test
 - DockerDesktopアプリを立ち上げる
 - docker/php/DockerfileのFROM php:7.4.9-fpmをFROM php:7.4-fpmに書き換える
+（私の環境の影響なのか書き換えないとビルドできませんでした）
 - docker-compose up -d --build
 ### Laravel環境構築
 - docker-compose exec php bash
