@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\SoldProduct;
 use Illuminate\Http\Request;
 use App\Http\Requests\ExhibitionRequest;
+use App\Http\Requests\AddressRequest;
+
 
 class PurchaseController extends Controller
 {
@@ -60,13 +62,9 @@ class PurchaseController extends Controller
         }
 
     // 住所情報の保存・更新
-    public function update(Request $request, $item_id)
+    public function update(AddressRequest $request, $item_id)
     {
-        $validated = $request->validate([
-            'zip'         => 'required|string|max:10',
-            'address'     => 'required|string|max:255',
-            'building'    => 'nullable|string|max:255',
-        ]);
+            $validated = $request->validated(); 
 
         // ユーザーのプロフィール更新
         Auth::user()->profile()->updateOrCreate(

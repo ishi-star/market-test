@@ -29,7 +29,7 @@ class ProfileRequest extends FormRequest
             'name'     => 'required|string|max:20',
             'zip'      => ['required', 'regex:/^\d{3}-\d{4}$/'],
             'address'  => 'required|string',
-            'building' => 'required|string',
+            'building' => 'nullable|string',
         ];
     }
 
@@ -49,7 +49,6 @@ class ProfileRequest extends FormRequest
         'address.required'=> '住所は必須です。',
         'address.string'  => '住所は文字列で入力してください。',
 
-        'building.required' => '建物名・部屋番号は必須です。',
         'building.string'   => '建物名・部屋番号は文字列で入力してください。',
     ];
 }
