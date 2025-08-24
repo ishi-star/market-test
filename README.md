@@ -1,7 +1,7 @@
 # マーケット
 ## 環境構築
 ### Dockerビルド
-- git clone git clone git@github.com:ishi-star/market-test.git
+- git clone git@github.com:ishi-star/market-test.git
 - cd market-test
 - DockerDesktopアプリを立ち上げる
 - docker-compose up -d --build
