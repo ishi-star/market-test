@@ -79,13 +79,30 @@
             @endif
           </span>
         </p>
+
+        <script>
+          document.addEventListener("DOMContentLoaded", function () {
+            const select = document.getElementById("payment_method");
+            const display = document.getElementById("selected-payment-method");
+
+            const map = {
+              credit: "カード払い",
+              konbini: "コンビニ払い",
+            };
+
+            select.addEventListener("change", function () {
+              const value = this.value;
+              display.textContent = map[value] ?? "未選択";
+            });
+          });
+        </script>
+
       </div>
               <input type="submit" class="purchase__submit-btn btn" value="購入する">
       </form>
     </div>
   </div>
 </div>
-
 
 @endsection
 
