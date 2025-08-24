@@ -23,7 +23,7 @@
   {{-- タブ --}}
   <div class="mypage__tabs">
     <a href="{{ route('mypage', ['page' => 'buy']) }}" 
-       class="mypage__tab {{ $page === 'selling' ? 'active' : '' }}">
+       class="mypage__tab {{ $page === 'buy' ? 'active' : '' }}">
       出品した商品
     </a>
     <a href="{{ route('mypage', ['page' => 'sell']) }}" 
