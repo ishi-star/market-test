@@ -21,7 +21,7 @@
   @unless(in_array(Route::currentRouteName(), ['login', 'register']))
     <div class="header__center">
       <form action="{{ route('products.index') }}" method="GET" class="search-bar">
-        <input type="text" name="keyword" placeholder="なにをお探しですか？" class="search-bar__input">
+        <input type="text" name="keyword" placeholder="なにをお探しですか？" class="search-bar__input" value="{{ request('keyword') }}" >
       </form>
     </div>
   @endunless
